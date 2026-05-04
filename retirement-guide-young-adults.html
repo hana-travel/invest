@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>給 25 歲的你 · 用 1 杯手搖飲的錢提早財務自由</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+TC:wght@400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg-2: #14141c;
+    --bg-3: #1f1f2e;
+    --ink: #f5f5f5;
+    --ink-dim: #a8a8b8;
+    --neon: #00ff88;
+    --neon-2: #ff3366;
+    --neon-3: #00d4ff;
+    --gold: #ffd700;
+    --purple: #a855f7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans TC', -apple-system, "PingFang TC", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* 動態背景 */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(0, 255, 136, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(255, 51, 102, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    padding: 60px 0 80px 0;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid var(--neon);
+    color: var(--neon);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+  }
+
+  .hero-tag::before, .hero-tag::after { content: '·'; margin: 0 8px; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(40px, 9vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+
+  h1 .highlight {
+    color: var(--neon);
+    font-style: italic;
+    text-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+  }
+
+  h1 .strike {
+    color: var(--ink-dim);
+    text-decoration: line-through;
+    text-decoration-color: var(--neon-2);
+    text-decoration-thickness: 4px;
+    font-size: 0.7em;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--ink-dim);
+    max-width: 560px;
+    margin: 0 auto 32px auto;
+    line-height: 1.8;
+  }
+
+  .hero-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    letter-spacing: 2px;
+  }
+
+  .hero-meta span { color: var(--neon); }
+
+  /* ===== Section ===== */
+  section {
+    margin-bottom: 100px;
+    position: relative;
+  }
+
+  .section-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 100px;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--ink-dim);
+    margin-bottom: -50px;
+    margin-left: -8px;
+    opacity: 0.4;
+    letter-spacing: -3px;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 40px);
+    line-height: 1.2;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  h2 em {
+    color: var(--neon);
+    font-style: italic;
+  }
+
+  .section-sub {
+    color: var(--ink-dim);
+    font-size: 15px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 32px 0 12px 0;
+    color: var(--ink);
+  }
+
+  p {
+    margin-bottom: 16px;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  strong {
+    color: var(--neon);
+    font-weight: 700;
+  }
+
+  /* 對比框 */
+  .compare-emoji {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.05), rgba(0, 212, 255, 0.05));
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    padding: 28px;
+    margin: 32px 0;
+    border-radius: 12px;
+  }
+
+  .compare-emoji-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  }
+
+  .compare-emoji-row:last-child { border-bottom: none; }
+
+  .emoji-big {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .compare-emoji-label {
+    flex: 1;
+    font-size: 14px;
+    color: var(--ink-dim);
+  }
+
+  .compare-emoji-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--neon);
+    font-size: 16px;
+  }
+
+  /* 大數字展示 */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 32px 0;
+  }
+
+  .stat-card {
+    background: var(--bg-2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 24px 16px;
+    text-align: center;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--neon);
+  }
+
+  .stat-card.pink::before { background: var(--neon-2); }
+  .stat-card.gold::before { background: var(--gold); }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-dim);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 7vw, 44px);
+    color: var(--neon);
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+
+  .stat-card.pink .stat-value { color: var(--neon-2); }
+  .stat-card.gold .stat-value { color: var(--gold); }
+
+  .stat-unit {
+    font-size: 11px;
+    color: var(--ink-dim);
+    margin-top: 4px;
+  }
+
+  /* 警告框 */
+  .alert-box {
+    background: linear-gradient(135deg, rgba(255, 51, 102, 0.08), rgba(168, 85, 247, 0.08));
+    border-left: 4px solid var(--neon-2);
+    padding: 24px 28px;
+    margin: 32px 0;
+    border-radius: 0 12px 12px 0;
+  }
+
+  .alert-box-title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--neon-2);
+    margin-bottom: 8px;
+  }
+
+  /* Highlight box */
+  .glow-box {
+    background: var(--bg-2);
+    border: 1px solid var(--neon);
+    padding: 28px;
+    margin: 32px 0;
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(0, 255, 136, 0.1);
+  }
+
+  .glow-box-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--neon);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  .glow-box-title::before { content: "✨ "; }
+
+  /* 年齡比較表 */
+  .age-compare {
+    display: grid;
+    gap: 12px;
+    margin: 32px 0;
+  }
+
+  .age-row {
+    background: var(--bg-2);
+    padding: 20px 24px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+  }
+
+  .age-row.winner {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.05));
+    border: 1px solid var(--neon);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.15);
+  }
+
+  .age-row.loser {
+    opacity: 0.5;
+  }
+
+  .age-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .age-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 1px;
+  }
+
+  .age-row.winner .age-label { color: var(--neon); }
+
+  .age-detail {
+    font-size: 12px;
+    color: var(--ink-dim);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .age-result {
+    text-align: right;
+  }
+
+  .age-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--neon);
+    line-height: 1;
+  }
+
+  .age-row.loser .age-amount { color: var(--ink-dim); }
+
+  .age-multi {
+    font-size: 11px;
+    color: var(--ink-dim);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ETF Cards */
+  .etf-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 32px 0;
+  }
+
+  .etf-card {
+    background: var(--bg-2);
+    border-radius: 12px;
+    padding: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .etf-card.tw {
+    background: linear-gradient(135deg, var(--bg-2) 0%, rgba(255, 51, 102, 0.05) 100%);
+    border-top: 4px solid var(--neon-2);
+  }
+
+  .etf-card.us {
+    background: linear-gradient(135deg, var(--bg-2) 0%, rgba(0, 212, 255, 0.05) 100%);
+    border-top: 4px solid var(--neon-3);
+  }
+
+  .etf-flag {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  .etf-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .etf-card.tw .etf-card-title { color: var(--neon-2); }
+  .etf-card.us .etf-card-title { color: var(--neon-3); }
+
+  .etf-card-ticker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    margin-bottom: 16px;
+  }
+
+  .etf-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .etf-card li {
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-dim);
+  }
+
+  .etf-card li:last-child { border-bottom: none; }
+
+  .etf-card li strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* Steps */
+  .steps {
+    counter-reset: step;
+    margin: 32px 0;
+  }
+
+  .step {
+    counter-increment: step;
+    background: var(--bg-2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 28px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    position: relative;
+    padding-left: 90px;
+    transition: all 0.3s;
+  }
+
+  .step:hover {
+    border-color: var(--neon);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.1);
+  }
+
+  .step::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 24px;
+    top: 24px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--neon);
+    line-height: 1;
+  }
+
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    color: var(--ink-dim);
+    line-height: 1.7;
+  }
+
+  .step-desc strong {
+    color: var(--neon);
+  }
+
+  .cta-link {
+    display: inline-block;
+    margin: 12px 0;
+    padding: 12px 24px;
+    background: var(--neon);
+    color: var(--bg) !important;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+    transition: all 0.2s;
+  }
+
+  .cta-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px rgba(0, 255, 136, 0.6);
+  }
+
+  .disclosure-note {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--neon);
+    background: rgba(0, 255, 136, 0.08);
+    border: 1px dashed var(--neon);
+    padding: 8px 14px;
+    border-radius: 6px;
+    margin: 8px 0;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  /* Q&A */
+  .qa-item {
+    background: var(--bg-2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 12px;
+    padding: 24px 28px;
+    border-radius: 12px;
+    transition: all 0.3s;
+  }
+
+  .qa-item:hover {
+    border-color: rgba(0, 255, 136, 0.3);
+  }
+
+  .qa-q {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .qa-q::before {
+    content: "Q";
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--bg);
+    background: var(--neon);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    margin-right: 8px;
+    font-size: 14px;
+  }
+
+  .qa-a {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+  }
+
+  .qa-a strong { color: var(--neon); }
+
+  /* Final CTA */
+  .final-cta {
+    background: linear-gradient(135deg, var(--bg-2) 0%, var(--bg-3) 100%);
+    border: 1px solid var(--neon);
+    padding: 48px 32px;
+    margin: 60px -24px 0 -24px;
+    text-align: center;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(0, 255, 136, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .final-cta-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--neon);
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .final-cta-title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(28px, 6vw, 40px);
+    margin-bottom: 16px;
+    line-height: 1.3;
+    position: relative;
+  }
+
+  .final-cta-desc {
+    font-size: 15px;
+    color: var(--ink-dim);
+    max-width: 480px;
+    margin: 0 auto 28px auto;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .checklist {
+    text-align: left;
+    max-width: 380px;
+    margin: 0 auto;
+    background: var(--bg);
+    padding: 24px 28px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    position: relative;
+  }
+
+  .checklist-item {
+    padding: 12px 0;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--ink-dim);
+  }
+
+  .checklist-item:last-child { border-bottom: none; }
+
+  .checklist-item::before {
+    content: "□";
+    color: var(--neon);
+    font-weight: 700;
+    margin-right: 12px;
+    font-size: 16px;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 60px;
+    padding: 24px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 11px;
+    color: var(--ink-dim);
+    line-height: 1.8;
+  }
+
+  footer .disclaimer {
+    background: var(--bg-2);
+    padding: 16px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  /* RWD */
+  @media (max-width: 600px) {
+    .container { padding: 24px 16px; }
+    .stats-grid { gap: 8px; }
+    .stat-card { padding: 16px 8px; }
+    .stat-label { font-size: 9px; letter-spacing: 0; }
+    .stat-unit { font-size: 10px; }
+    .etf-cards { grid-template-columns: 1fr; }
+    .step { padding-left: 24px; padding-top: 80px; }
+    .step::before { top: 20px; left: 24px; font-size: 36px; }
+    .age-row { padding: 16px 18px; }
+    .age-label { font-size: 18px; }
+    .age-amount { font-size: 24px; }
+    .final-cta { margin: 40px -16px 0 -16px; padding: 36px 20px; }
+    .section-num { font-size: 70px; margin-bottom: -40px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ===== HERO ===== -->
+  <div class="hero">
+    <div class="hero-tag">FOR HUMANS UNDER 30</div>
+    <h1>
+      用一杯<span class="strike">手搖飲</span>的錢<br>
+      讓自己 <span class="highlight">35 歲</span> 自由
+    </h1>
+    <p class="hero-sub">
+      不用懂股票、不用看新聞、不用問理專。<br>
+      你只需要一個券商 App,跟一個能堅持 10 年的自己。
+    </p>
+    <p class="hero-meta">
+      閱讀時間 <span>10 分鐘</span> · 設定時間 <span>30 分鐘</span> · 影響時間 <span>40 年</span>
+    </p>
+  </div>
+
+  <!-- ===== 01 · 殘酷現實 ===== -->
+  <section>
+    <div class="section-num">01</div>
+    <h2>先講<em>難聽的事實</em></h2>
+    <p class="section-sub">你的薪水永遠追不上房價,但你的時間追得上</p>
+
+    <p>身為 25 歲的你,可能正面對這個惡夢:</p>
+
+    <div class="compare-emoji">
+      <div class="compare-emoji-row">
+        <span class="emoji-big">🏠</span>
+        <span class="compare-emoji-label">台北市平均房價</span>
+        <span class="compare-emoji-value">2,500 萬+</span>
+      </div>
+      <div class="compare-emoji-row">
+        <span class="emoji-big">💼</span>
+        <span class="compare-emoji-label">25-29 歲平均月薪</span>
+        <span class="compare-emoji-value">3.8 萬</span>
+      </div>
+      <div class="compare-emoji-row">
+        <span class="emoji-big">📈</span>
+        <span class="compare-emoji-label">平均年加薪幅度</span>
+        <span class="compare-emoji-value">2-3%</span>
+      </div>
+      <div class="compare-emoji-row">
+        <span class="emoji-big">🎂</span>
+        <span class="compare-emoji-label">勞退預估月領</span>
+        <span class="compare-emoji-value">1.8 萬</span>
+      </div>
+    </div>
+
+    <p>聽起來很絕望對吧?<strong>但 25 歲的你,握有一個 40 歲的人花再多錢都買不回來的東西——時間。</strong></p>
+
+    <div class="alert-box">
+      <div class="alert-box-title">這不是雞湯,是數學</div>
+      <p style="margin: 0;">
+        你今天每月省下一杯手搖飲的錢去投資,<strong>40 年後可以滾出一台保時捷 911</strong>。<br>
+        但如果你 35 歲才開始,結果連 Toyota 都買不起。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 02 · 複利的暴力 ===== -->
+  <section>
+    <div class="section-num">02</div>
+    <h2>同樣月扣 1 萬,<em>差 18 年</em>結果差幾倍?</h2>
+    <p class="section-sub">這個對比看完你會想立刻打開券商 App</p>
+
+    <p>假設兩個人都是月扣 1 萬、年化 8% 報酬。一個是你(25 歲開始),一個是你 43 歲的主管。</p>
+
+    <div class="age-compare">
+      <div class="age-row winner">
+        <div class="age-info">
+          <span class="age-label">你 · 25 歲開始</span>
+          <span class="age-detail">扣到 65 歲 · 投入 40 年 · 本金 480 萬</span>
+        </div>
+        <div class="age-result">
+          <div class="age-amount">3,500 萬</div>
+          <div class="age-multi">7.3x</div>
+        </div>
+      </div>
+
+      <div class="age-row">
+        <div class="age-info">
+          <span class="age-label">你晚 10 年 · 35 歲開始</span>
+          <span class="age-detail">扣到 65 歲 · 投入 30 年 · 本金 360 萬</span>
+        </div>
+        <div class="age-result">
+          <div class="age-amount">1,490 萬</div>
+          <div class="age-multi">4.1x</div>
+        </div>
+      </div>
+
+      <div class="age-row loser">
+        <div class="age-info">
+          <span class="age-label">你 43 歲主管 · 才開始</span>
+          <span class="age-detail">扣到 63 歲 · 投入 20 年 · 本金 240 萬</span>
+        </div>
+        <div class="age-result">
+          <div class="age-amount">589 萬</div>
+          <div class="age-multi">2.5x</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glow-box">
+      <div class="glow-box-title">這就是「時間複利」的暴力</div>
+      <p style="margin: 0;">
+        25 歲的你比 43 歲主管多投入 240 萬本金,但結果<strong>多了將近 2,900 萬</strong>。<br>
+        所以年輕時最大的資產<strong>不是錢,是時間</strong>。<br>
+        晚 10 年開始 ≈ 退休金腰斬。<strong>每延後 1 年,代價是 100 萬以上。</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 03 · 月扣多少夠? ===== -->
+  <section>
+    <div class="section-num">03</div>
+    <h2>所以,<em>到底要扣多少</em>?</h2>
+    <p class="section-sub">從你戒掉一杯手搖飲開始就行</p>
+
+    <p>很多人覺得「我月薪才 4 萬,哪有閒錢投資」。我直接給你算:</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">每天少喝</div>
+        <div class="stat-value">1 杯</div>
+        <div class="stat-unit">手搖飲 (60 元)</div>
+      </div>
+      <div class="stat-card pink">
+        <div class="stat-label">每月省下</div>
+        <div class="stat-value">1,800</div>
+        <div class="stat-unit">元</div>
+      </div>
+      <div class="stat-card gold">
+        <div class="stat-label">40 年後</div>
+        <div class="stat-value">630</div>
+        <div class="stat-unit">萬元</div>
+      </div>
+    </div>
+
+    <p>沒看錯,<strong>每天少一杯手搖飲,40 年後多 630 萬</strong>。如果你能扣到月 5,000 元(等於不買新 iPhone、不換潮牌、跟朋友 split bill 自己煮飯),40 年後是 <strong>1,750 萬</strong>。</p>
+
+    <h3>給你的「自由分級」目標</h3>
+
+    <div class="compare-emoji">
+      <div class="compare-emoji-row">
+        <span class="emoji-big">☕</span>
+        <span class="compare-emoji-label"><strong>入門級</strong> · 月扣 2,000 元(戒手搖)</span>
+        <span class="compare-emoji-value">700 萬</span>
+      </div>
+      <div class="compare-emoji-row">
+        <span class="emoji-big">🍱</span>
+        <span class="compare-emoji-label"><strong>新手村</strong> · 月扣 5,000 元(自己煮飯)</span>
+        <span class="compare-emoji-value">1,750 萬</span>
+      </div>
+      <div class="compare-emoji-row">
+        <span class="emoji-big">💪</span>
+        <span class="compare-emoji-label"><strong>挑戰級</strong> · 月扣 10,000 元(收入 25%)</span>
+        <span class="compare-emoji-value">3,500 萬</span>
+      </div>
+      <div class="compare-emoji-row">
+        <span class="emoji-big">🚀</span>
+        <span class="compare-emoji-label"><strong>魔王級</strong> · 月扣 15,000 元(咬牙存)</span>
+        <span class="compare-emoji-value">5,250 萬</span>
+      </div>
+    </div>
+
+    <p style="text-align: center; color: var(--ink-dim); font-size: 13px; margin-top: 20px;">
+      ※ 假設 40 年期、年化 8%。從你能負擔的金額開始,加薪了再往上加。<br>
+      <strong>從 0 到 1 比從 1 到 10 困難 100 倍。</strong>先開始,再優化。
+    </p>
+  </section>
+
+  <!-- ===== 04 · 兩檔 ETF ===== -->
+  <section>
+    <div class="section-num">04</div>
+    <h2>該買什麼?<em>兩檔就夠</em></h2>
+    <p class="section-sub">不用研究股票,不用聽投顧,買整個市場</p>
+
+    <p>不要被網紅推坑買個股(被「下一個台積電」騙的人太多了)。最簡單、最不容易踩雷的方式是 <strong>ETF</strong>(一籃子股票)。</p>
+
+    <p>給你最懶的兩檔配置:</p>
+
+    <div class="etf-cards">
+      <div class="etf-card tw">
+        <div class="etf-flag">🇹🇼</div>
+        <div class="etf-card-title">台灣 50</div>
+        <div class="etf-card-ticker">代號 0050</div>
+        <ul>
+          <li><strong>裝什麼:</strong>台積電、鴻海、聯發科 等台灣 50 大</li>
+          <li><strong>歷史報酬:</strong>年化 8-9%</li>
+          <li><strong>白話翻譯:</strong>「押注台灣經濟」</li>
+          <li><strong>會配息:</strong>年配,殖利率 3-4%</li>
+        </ul>
+      </div>
+      <div class="etf-card us">
+        <div class="etf-flag">🇺🇸</div>
+        <div class="etf-card-title">S&P 500</div>
+        <div class="etf-card-ticker">代號 00646</div>
+        <ul>
+          <li><strong>裝什麼:</strong>蘋果、輝達、Google、Tesla 等美國 500 大</li>
+          <li><strong>歷史報酬:</strong>年化 10%</li>
+          <li><strong>白話翻譯:</strong>「押注全球科技龍頭」</li>
+          <li><strong>會配息:</strong>但會被美國預扣 30%</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>比例怎麼配?</h3>
+    <p>如果完全沒概念,直接 <strong>50/50</strong>(各扣一半)。理由:</p>
+    <ul style="margin: 12px 0 24px 24px; line-height: 2; color: var(--ink-dim);">
+      <li>不會「全錯」(任何時刻至少一邊在賺)</li>
+      <li>不用做決定(年輕人最珍貴的是腦力,別浪費在猶豫上)</li>
+      <li>20 年後的結果跟其他比例差不到 5%(別糾結)</li>
+    </ul>
+
+    <div class="alert-box">
+      <div class="alert-box-title">不要做的事</div>
+      <p style="margin: 0; line-height: 1.8;">
+        ❌ 跟風買「主題型 ETF」(AI、5G、ESG、電動車...通常是高點才推)<br>
+        ❌ All-in 個股(就算是台積電、輝達)<br>
+        ❌ 玩當沖、權證、選擇權(這是賭博,不是投資)<br>
+        ❌ 借錢投資(你會死得很慘)
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 05 · 怎麼開始 ===== -->
+  <section>
+    <div class="section-num">05</div>
+    <h2>3 步驟,<em>今晚就能搞定</em></h2>
+    <p class="section-sub">不要再「下次再說」,今晚就開始</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-title">線上開戶 · 10 分鐘</div>
+        <div class="step-desc">
+          找一家有定期定額的券商,推薦 <strong>國泰證券</strong>(介面年輕人友善、App 直覺、手續費低)。<br>
+          <a href="https://cathaysec.tw/E3Ogj7g" target="_blank" rel="noopener" class="cta-link">👉 點我線上開戶</a><br>
+          <span class="disclosure-note">※ 個人推薦連結:你領 $300、我領 $300,雙方都受惠 🤝</span><br>
+          全程線上完成,1-2 個工作天會收到通知。
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-title">設定自動扣款 · 5 分鐘</div>
+        <div class="step-desc">
+          打開 App,進「定期定額」功能,設定:<br>
+          • 標的 1:<strong>0050</strong>(扣你決定金額的 50%)<br>
+          • 標的 2:<strong>00646</strong>(扣另外 50%)<br>
+          • 扣款方式:從交割戶自動扣(一次設定終身受用)
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-title">關掉 App,過你的人生</div>
+        <div class="step-desc">
+          這是最難的一步,90% 的人做不到。<br><br>
+          <strong>不要每天看帳戶。不要因為新聞恐慌停扣。不要在大跌時懷疑人生。</strong>不要把投資 App 放在手機首頁。<br><br>
+          專心過你的人生:工作賺錢、學新東西、戀愛、旅行、陪家人。每年只需要看一次帳戶,確認還在自動扣就好。<br><br>
+          <strong>讓時間幫你工作,你去工作不要打擾它。</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 06 · 大跌時 ===== -->
+  <section>
+    <div class="section-num">06</div>
+    <h2>市場崩盤時,<em>怎麼辦</em>?</h2>
+    <p class="section-sub">放心,你 40 年內會經歷 5-8 次崩盤,習慣就好</p>
+
+    <p>2020 年新冠崩盤、2022 年升息熊市、2008 年金融海嘯...這些大跌不是「異常」,是「常態」。你 40 歲、50 歲、60 歲時都還會遇到。</p>
+
+    <p>但這裡有個你阿公那輩沒告訴你的秘密:</p>
+
+    <div class="glow-box">
+      <div class="glow-box-title">大跌不是壞事,是大特價</div>
+      <p style="margin: 0;">
+        本來一張 13 萬的 0050,大跌變成 9 萬就能買到。<br>
+        <strong>你應該開心,不是恐慌。</strong><br><br>
+        繼續扣 + 有閒錢就加碼 = 大跌後 2-3 年的反彈,你會變成全公司最有錢的同事。<br><br>
+        歷史上,熊市加碼的人,牛市賺最多。
+      </p>
+    </div>
+
+    <h3>機械式加碼規則(不用判斷)</h3>
+    <p>準備一筆「股災緊急金」(放台幣定存或貨幣基金):</p>
+    <ul style="margin: 12px 0 24px 24px; line-height: 2; color: var(--ink-dim);">
+      <li>市場跌 <strong>10%</strong> → 動用 1/3</li>
+      <li>市場跌 <strong>20%</strong> → 動用 1/2</li>
+      <li>市場跌 <strong>30%+</strong> → 全部投入,然後等</li>
+    </ul>
+
+    <div class="alert-box">
+      <div class="alert-box-title">最致命的 3 個動作</div>
+      <p style="margin: 0; line-height: 1.8;">
+        ❌ 大跌時恐慌停扣 — 把帳面虧損變永久虧損<br>
+        ❌ 大漲時 All-in — 通常會買在山頂<br>
+        ❌ 看新聞跟風換標的 — 主題輪動永遠抓不到
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 07 · QA ===== -->
+  <section>
+    <div class="section-num">07</div>
+    <h2>你<em>大概會問</em>的問題</h2>
+    <p class="section-sub">先把疑慮解決,執行才會堅定</p>
+
+    <div class="qa-item">
+      <div class="qa-q">月薪才 32K,真的能投資嗎?</div>
+      <div class="qa-a">能。從 <strong>每月 1,000 元</strong>開始就好。重點不是金額,是「養成習慣」+「啟動時間複利」。先存 6 個月生活費當緊急金,然後每月扣 1,000-2,000 元。等加薪、換工作後再往上加。<strong>關鍵是「有沒有開始」,不是「多少錢」。</strong></div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">現在進場是不是太高了?要不要等大跌?</div>
+      <div class="qa-a">這是 30 年前、20 年前、10 年前都被問的問題,結果<strong>等的人錯過 30 年複利</strong>。定期定額的設計就是為了「不需要擇時」——你會自動買在不同點位,平均下來不會差。<strong>你最大的敵人不是高點,是「永遠在等更好的時機」。</strong></div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">我朋友推薦 00878、0056 高股息,要買嗎?</div>
+      <div class="qa-a">高股息 ETF 看起來很爽(每月有現金流),但<strong>長期總報酬通常輸給 0050</strong>。原因:配出來的息沒有自動再投入,複利效果打折。25 歲的你應該追求「資產極大化」,不是「現金流」——等你 50 歲快退休再考慮高股息。</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">那 ETF 有可能歸零嗎?</div>
+      <div class="qa-a">0050 或 S&P 500 歸零的條件 = 整個台灣或美國經濟崩潰。如果這真的發生,你的工作、銀行存款、房子、貨幣都會出事——<strong>那時候有沒有投資已經不重要了</strong>。ETF 會自動汰弱留強,不會因為一家公司倒閉就崩盤。</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">如果中間需要錢(結婚、買房、出國)怎麼辦?</div>
+      <div class="qa-a">投資的錢應該是「5 年內用不到的閒錢」。所以一定要先存 6 個月緊急預備金。婚禮、頭期款這種大額支出,應該另外用「短期儲蓄」處理(例如台幣定存)。<strong>不要動用退休金部位</strong>,真的急用可以贖回部分,不會卡死。</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">不會被詐騙吧?這聽起來太美好了</div>
+      <div class="qa-a">這篇講的是「自己用券商 App 買政府核可的 ETF」,<strong>沒有任何中間人</strong>——不需要群組、不需要老師、不需要付學費。錢都在你自己的證券戶裡。如果有人叫你把錢匯到「投資老師」帳戶、或保證「月賺 10%」,那才是詐騙。<strong>真正的投資很無聊,刺激的都是賭博。</strong></div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">能不能借錢投資?槓桿可以放大報酬對吧?</div>
+      <div class="qa-a"><strong>絕對不要</strong>。借錢投資的人,在 2008、2020、2022 三次大跌中,有極高比例被斷頭出場、永久虧損,甚至背債。複利的前提是「你能撐過去」,槓桿會讓你撐不過去。<strong>慢慢來,比較快。</strong></div>
+    </div>
+  </section>
+
+  <!-- ===== Final CTA ===== -->
+  <div class="final-cta">
+    <div class="final-cta-tag">YOUR 5 STEPS · TONIGHT</div>
+    <div class="final-cta-title">未來的你,<br>會感謝今晚的你</div>
+    <p class="final-cta-desc">
+      你 65 歲的退休金,不是靠加薪、不是靠中樂透、不是靠繼承。<br>
+      是靠你今晚的這 30 分鐘決定。<br>
+      <strong style="color: var(--neon)">本週內完成這 5 件事:</strong>
+    </p>
+    <div class="checklist">
+      <div class="checklist-item">確認自己有 6 個月緊急預備金</div>
+      <div class="checklist-item">用上面連結開國泰證券戶</div>
+      <div class="checklist-item">決定每月可投金額(從 1,000 元也行)</div>
+      <div class="checklist-item">設定 0050 + 00646 自動扣款</div>
+      <div class="checklist-item">把投資 App 從手機首頁移走</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="disclaimer">
+      <strong>免責聲明:</strong>本頁僅為個人理財觀念分享,非投資建議。任何投資都有風險,過去績效不代表未來。請依個人財務狀況評估。具體標的、報酬率僅為說明用,實際結果因市場條件而異。
+    </div>
+    <div>分享給更多需要的朋友 · 一起為自由做準備</div>
+    <div style="margin-top: 8px; opacity: 0.5;">© 2026 · For humans under 30</div>
+  </footer>
+
+</div>
+</body>
+</html>
