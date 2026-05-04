@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>給朋友的退休金懶人包 · 0050 + 00646 定期定額入門</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #faf6ed;
+    --paper-dark: #ede4cd;
+    --accent: #d65a2c;
+    --accent-deep: #a8401d;
+    --gold: #c89a4a;
+    --green: #4a7a47;
+    --blue: #3a5d8c;
+    --muted: #7a7264;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans TC', -apple-system, "PingFang TC", sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.75;
+    background-image:
+      radial-gradient(circle at 0% 0%, rgba(214, 90, 44, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(58, 93, 140, 0.06) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  /* ===== 封面 ===== */
+  .cover {
+    text-align: center;
+    padding: 60px 0 80px 0;
+    border-bottom: 4px double var(--ink);
+    margin-bottom: 60px;
+    position: relative;
+  }
+
+  .cover-tag {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+
+  .cover-tag::before, .cover-tag::after {
+    content: "─── ";
+  }
+  .cover-tag::after { content: " ───"; }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(32px, 7vw, 56px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .cover-sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .cover-meta {
+    margin-top: 32px;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 2px;
+  }
+
+  /* ===== 章節 ===== */
+  section {
+    margin-bottom: 80px;
+  }
+
+  .chapter-num {
+    font-family: 'Fraunces', serif;
+    font-size: 80px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.2;
+    margin-bottom: -50px;
+    margin-left: -8px;
+  }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+  }
+
+  .chapter-sub {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 32px 0 12px 0;
+    color: var(--ink);
+  }
+
+  p {
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+
+  strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ===== 重點框 ===== */
+  .highlight-box {
+    background: var(--paper-dark);
+    border-left: 6px solid var(--accent);
+    padding: 24px 28px;
+    margin: 32px 0;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .highlight-box-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--accent-deep);
+  }
+
+  .highlight-box-title::before {
+    content: "💡 ";
+  }
+
+  /* ===== 警告框 ===== */
+  .warning-box {
+    background: #fff4e6;
+    border: 2px dashed var(--accent);
+    padding: 24px 28px;
+    margin: 32px 0;
+    border-radius: 8px;
+  }
+
+  .warning-box-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .warning-box-title::before {
+    content: "⚠️ ";
+  }
+
+  /* ===== 大數字展示 ===== */
+  .big-numbers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 3px solid var(--ink);
+    margin: 32px 0;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .big-number-item {
+    padding: 28px 16px;
+    text-align: center;
+    border-right: 2px solid var(--paper-dark);
+  }
+
+  .big-number-item:last-child { border-right: none; }
+
+  .big-number-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    line-height: 1.4;
+  }
+
+  .big-number-value {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(24px, 6vw, 38px);
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .big-number-unit {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* ===== 步驟卡 ===== */
+  .steps {
+    counter-reset: step-counter;
+    margin: 32px 0;
+  }
+
+  .step {
+    counter-increment: step-counter;
+    background: #fff;
+    border: 2px solid var(--ink);
+    padding: 28px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    position: relative;
+    padding-left: 80px;
+    box-shadow: 4px 4px 0 var(--paper-dark);
+  }
+
+  .step::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 20px;
+    top: 24px;
+    width: 44px;
+    height: 44px;
+    background: var(--accent);
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .step-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .step-desc {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.7;
+  }
+
+  /* ===== 兩欄比較 ===== */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 32px 0;
+  }
+
+  .compare-card {
+    padding: 24px;
+    border-radius: 8px;
+    border: 2px solid var(--ink);
+  }
+
+  .compare-card.tw {
+    background: #fff;
+    border-top: 8px solid var(--accent);
+  }
+
+  .compare-card.us {
+    background: #fff;
+    border-top: 8px solid var(--blue);
+  }
+
+  .compare-card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .compare-card.tw .compare-card-title { color: var(--accent); }
+  .compare-card.us .compare-card-title { color: var(--blue); }
+
+  .compare-card-ticker {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    font-family: monospace;
+  }
+
+  .compare-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .compare-card li {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--paper-dark);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .compare-card li:last-child { border-bottom: none; }
+
+  .compare-card li strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* ===== 視覺化進度條 ===== */
+  .progress-demo {
+    background: #fff;
+    border: 2px solid var(--ink);
+    padding: 24px;
+    margin: 32px 0;
+    border-radius: 8px;
+  }
+
+  .progress-row {
+    margin-bottom: 20px;
+  }
+
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .progress-bar {
+    display: flex;
+    height: 36px;
+    border: 2px solid var(--ink);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .progress-principal {
+    background: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .progress-profit {
+    background: var(--gold);
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent, transparent 5px,
+      rgba(0,0,0,0.1) 5px, rgba(0,0,0,0.1) 10px
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .progress-legend {
+    display: flex;
+    gap: 24px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .progress-legend-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  /* ===== 表格 ===== */
+  .table-wrapper {
+    overflow-x: auto;
+    margin: 24px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  thead {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  th, td {
+    padding: 14px 12px;
+    text-align: left;
+    font-size: 14px;
+  }
+
+  th { font-weight: 700; letter-spacing: 1px; font-size: 12px; }
+  th:not(:first-child), td:not(:first-child) { text-align: right; }
+
+  tbody tr {
+    border-bottom: 1px solid var(--paper-dark);
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr.highlight { background: rgba(214, 90, 44, 0.08); }
+  tbody tr.highlight td:first-child { font-weight: 700; color: var(--accent); }
+
+  /* ===== Q&A ===== */
+  .qa-item {
+    background: #fff;
+    border: 2px solid var(--ink);
+    margin-bottom: 16px;
+    padding: 20px 24px;
+    border-radius: 8px;
+  }
+
+  .qa-q {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--accent);
+  }
+
+  .qa-q::before {
+    content: "Q · ";
+    color: var(--accent);
+    font-weight: 800;
+  }
+
+  .qa-a {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  .qa-a::before {
+    content: "A · ";
+    color: var(--ink);
+    font-weight: 800;
+  }
+
+  /* ===== Final 行動呼籲 ===== */
+  .cta-section {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px 32px;
+    margin: 60px -24px 0 -24px;
+    text-align: center;
+    border-radius: 12px;
+  }
+
+  .cta-tag {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .cta-title {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 32px;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+
+  .cta-desc {
+    font-size: 15px;
+    opacity: 0.9;
+    max-width: 500px;
+    margin: 0 auto 24px auto;
+    line-height: 1.7;
+  }
+
+  .cta-checklist {
+    text-align: left;
+    max-width: 380px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.05);
+    padding: 24px 28px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .cta-checklist-item {
+    padding: 10px 0;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .cta-checklist-item:last-child { border-bottom: none; }
+
+  .cta-checklist-item::before {
+    content: "□ ";
+    color: var(--gold);
+    font-weight: 700;
+    margin-right: 8px;
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    margin-top: 60px;
+    padding: 24px 0;
+    border-top: 1px solid var(--ink);
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .cta-link {
+    display: inline-block;
+    margin: 12px 0;
+    padding: 10px 20px;
+    background: var(--accent);
+    color: white !important;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 15px;
+    box-shadow: 3px 3px 0 var(--ink);
+    transition: all 0.2s;
+  }
+
+  .cta-link:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--ink);
+  }
+
+  .disclosure-note {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--accent-deep);
+    background: #fff4e6;
+    border: 1px dashed var(--accent);
+    padding: 8px 14px;
+    border-radius: 6px;
+    margin: 8px 0;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  footer .disclaimer {
+    background: var(--paper-dark);
+    padding: 16px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    text-align: left;
+    font-size: 11px;
+  }
+
+  /* RWD */
+  @media (max-width: 600px) {
+    .container { padding: 24px 16px; }
+    .compare { grid-template-columns: 1fr; }
+    .big-number-item { padding: 20px 8px; }
+    .big-number-label { font-size: 10px; letter-spacing: 0; }
+    .big-number-unit { font-size: 11px; }
+    .step { padding-left: 20px; padding-top: 70px; }
+    .step::before { top: 16px; left: 20px; }
+    .cta-section { margin: 40px -16px 0 -16px; padding: 32px 20px; }
+    .chapter-num { font-size: 60px; margin-bottom: -36px; }
+    h2 { font-size: 26px; }
+    h3 { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ===== 封面 ===== -->
+  <div class="cover">
+    <div class="cover-tag">給上班族朋友的退休金懶人包</div>
+    <h1>讓時間替你<br>賺<em>退休金</em>的方法</h1>
+    <p class="cover-sub">
+      不需懂股票、不需看財報、不需研究線圖<br>
+      每月設定 1 萬,讓兩檔 ETF 自動幫你存到 600 萬
+    </p>
+    <p class="cover-meta">用 10 分鐘看完 · 用 30 分鐘設定 · 接下來 20 年都不用管</p>
+  </div>
+
+  <!-- ===== 為什麼大多數人沒有退休金 ===== -->
+  <section>
+    <div class="chapter-num">01</div>
+    <h2>為什麼一般人退休時都很窮?</h2>
+    <p class="chapter-sub">不是賺得不夠,是「沒有讓錢工作」</p>
+
+    <p>大多數上班族的存款狀況是這樣:錢領了 → 放活存 → 生活費 → 月底所剩無幾。就算有結餘,放在銀行年利率不到 1.5%,連通膨都打不過。</p>
+
+    <div class="highlight-box">
+      <div class="highlight-box-title">真正的退休金問題</div>
+      <p style="margin: 0;">
+        台灣勞退月退休金 <strong>平均不到 2 萬</strong>。如果你 65 歲時退休,平均餘命還有 20 年要過,**你需要至少 500-800 萬的自有資產才能維持基本生活品質**。光靠勞保勞退,絕對不夠。
+      </p>
+    </div>
+
+    <p>但如果你今天開始,<strong>每月只要拿出 1 萬塊</strong>,放進兩檔 ETF 讓它自動執行 20 年,你就能達到這個目標。這不是廣告話術,這是複利的數學。</p>
+  </section>
+
+  <!-- ===== 大數字展示 ===== -->
+  <section>
+    <div class="chapter-num">02</div>
+    <h2>看一下這個驚人的數字</h2>
+    <p class="chapter-sub">每月 1 萬 × 20 年 = 不可思議的結果</p>
+
+    <p>假設你每月投入 1 萬元,持續 20 年,年化報酬率 8%(這是台灣 50 與 S&P 500 過去歷史平均):</p>
+
+    <div class="big-numbers">
+      <div class="big-number-item">
+        <div class="big-number-label">你投入的本金</div>
+        <div class="big-number-value">240</div>
+        <div class="big-number-unit">萬元</div>
+      </div>
+      <div class="big-number-item">
+        <div class="big-number-label">20 年後變成</div>
+        <div class="big-number-value">589</div>
+        <div class="big-number-unit">萬元</div>
+      </div>
+      <div class="big-number-item">
+        <div class="big-number-label">時間幫你賺的</div>
+        <div class="big-number-value">+349</div>
+        <div class="big-number-unit">萬元</div>
+      </div>
+    </div>
+
+    <div class="progress-demo">
+      <div class="progress-row">
+        <div class="progress-label">
+          <span>20 年帳戶結構</span>
+          <span>總值 589 萬</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-principal" style="width: 41%">本金 240 萬</div>
+          <div class="progress-profit" style="width: 59%">複利 349 萬</div>
+        </div>
+        <div class="progress-legend">
+          <span><span class="progress-legend-dot" style="background: var(--muted)"></span>你自己投的錢</span>
+          <span><span class="progress-legend-dot" style="background: var(--gold)"></span>時間幫你賺的</span>
+        </div>
+      </div>
+    </div>
+
+    <p>看到了嗎?<strong>有將近 6 成是「時間幫你賺的」</strong>,不是你自己賺的。這就是「複利」最迷人的地方——你只要堅持投入,剩下的交給時間。</p>
+
+    <div class="warning-box">
+      <div class="warning-box-title">關鍵但殘酷的事實</div>
+      <p style="margin: 0;">
+        如果你 25 歲開始,40 年後是 <strong>3,500 萬</strong>。<br>
+        如果你 35 歲開始,30 年後是 <strong>1,500 萬</strong>。<br>
+        如果你 45 歲開始,20 年後是 <strong>590 萬</strong>。<br><br>
+        <strong>每晚 10 年開始,結果就少一半。</strong>所以最佳開始時間是「10 年前」,次佳時間是「今天」。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 認識兩檔 ETF ===== -->
+  <section>
+    <div class="chapter-num">03</div>
+    <h2>兩檔超簡單的 ETF</h2>
+    <p class="chapter-sub">不用挑股票,買整個市場</p>
+
+    <p>什麼是 ETF?簡單說,就是<strong>「一籃子股票」</strong>。你買一張,等於同時買了好多家公司,自動分散風險。</p>
+
+    <p>給朋友的最簡單建議:<strong>只買這兩檔</strong>,不要再管其他複雜的東西。</p>
+
+    <div class="compare">
+      <div class="compare-card tw">
+        <div class="compare-card-title">台灣 50</div>
+        <div class="compare-card-ticker">代號 0050</div>
+        <ul>
+          <li><strong>裝什麼:</strong>台灣前 50 大公司</li>
+          <li><strong>主要持股:</strong>台積電、鴻海、聯發科等</li>
+          <li><strong>歷史報酬:</strong>年化約 8-9%</li>
+          <li><strong>優點:</strong>台幣計價、無匯率風險、有股息</li>
+          <li><strong>適合:</strong>所有台灣上班族</li>
+        </ul>
+      </div>
+      <div class="compare-card us">
+        <div class="compare-card-title">S&P 500</div>
+        <div class="compare-card-ticker">代號 00646</div>
+        <ul>
+          <li><strong>裝什麼:</strong>美國前 500 大公司</li>
+          <li><strong>主要持股:</strong>蘋果、微軟、輝達、Google</li>
+          <li><strong>歷史報酬:</strong>年化約 10%</li>
+          <li><strong>優點:</strong>全球最強企業、產業分散</li>
+          <li><strong>適合:</strong>想分散到美國市場的人</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>為什麼這兩檔最適合新手?</h3>
+    <p><strong>不會倒閉:</strong>因為它買的是「整個市場」,單一公司倒了會被踢出去,新的強者會自動加進來。<strong>你不會踩雷。</strong></p>
+    <p><strong>不用研究:</strong>不需要看財報、不需要研究線圖、不需要關心新聞。設定自動扣款,然後就忘了它。</p>
+    <p><strong>費用超低:</strong>每年內扣費用約 0.4%,遠低於一般基金的 1.5-2%。長期下來省好幾百萬。</p>
+  </section>
+
+  <!-- ===== 比例配置 ===== -->
+  <section>
+    <div class="chapter-num">04</div>
+    <h2>兩檔該怎麼配?</h2>
+    <p class="chapter-sub">給新手最簡單的答案</p>
+
+    <p>很多人糾結要 60/40 還是 50/50,我直接告訴朋友:</p>
+
+    <div class="highlight-box">
+      <div class="highlight-box-title">完全沒概念,就 50 / 50</div>
+      <p style="margin: 0;">
+        台灣 50 投 5,000 元、S&P 500 投 5,000 元。<br>
+        這個比例最不會讓你後悔——任何情況下都不會「全錯」,也不需要花時間調整。<strong>選最簡單的,然後 20 年不要動它。</strong>
+      </p>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>類型</th>
+            <th>0050</th>
+            <th>00646</th>
+            <th>適合誰</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight">
+            <td>★ 平衡型(推薦)</td>
+            <td>50%</td>
+            <td>50%</td>
+            <td>所有新手</td>
+          </tr>
+          <tr>
+            <td>偏台股</td>
+            <td>70%</td>
+            <td>30%</td>
+            <td>愛領台幣股息的人</td>
+          </tr>
+          <tr>
+            <td>偏美股</td>
+            <td>30%</td>
+            <td>70%</td>
+            <td>看好美國科技的人</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size: 14px; color: var(--muted); text-align: center;">
+      ※ 老實說,這三種比例 20 年後的結果差不到 5%。<br>
+      <strong>持續扣 20 年</strong>遠比「比例完美」重要 100 倍。
+    </p>
+  </section>
+
+  <!-- ===== 4 步驟開始 ===== -->
+  <section>
+    <div class="chapter-num">05</div>
+    <h2>4 個步驟,今天就開始</h2>
+    <p class="chapter-sub">花 30 分鐘設定,接下來 20 年都不用管</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-title">開立證券戶</div>
+        <div class="step-desc">
+          選一家有「定期定額」服務的券商,推薦 <strong>國泰證券</strong>(介面友善、定期定額方便、手續費優惠)。<br>
+          <a href="https://cathaysec.tw/E3Ogj7g" target="_blank" rel="noopener" class="cta-link">👉 點我線上開戶 (國泰證券)</a><br>
+          <span class="disclosure-note">※ 此為個人推薦連結:你開戶領 $300、我也領 $300,雙方都受惠 🤝</span><br>
+          線上開戶大約 1-2 個工作天可以完成。記得同時開「銀行交割戶」(扣款用)。
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-title">設定每月自動扣款</div>
+        <div class="step-desc">
+          進入 App,找「定期定額」功能,設定:<br>
+          • 標的:0050(投 5,000 元)<br>
+          • 標的:00646(投 5,000 元)<br>
+          • 扣款方式:從交割戶自動扣
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-title">確認交割戶有錢</div>
+        <div class="step-desc">
+          每月發薪後,確認交割戶餘額足夠扣款。如果薪資自動轉帳到該戶,基本上不用擔心。<br>
+          <strong>失敗扣款的最大原因就是「忘記轉錢」</strong>,所以最簡單就是把該戶當作「投資帳戶」,薪水進來就分一部分過去。
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-title">關掉 App,過你的人生</div>
+        <div class="step-desc">
+          這是最重要的一步,但 90% 的人做不到。<br><br>
+          <strong>不要每天看帳戶。不要因為新聞恐慌停扣。不要在大跌時懷疑人生。</strong><br><br>
+          每年只需要看一次,確認還在持續扣款就好。其他時間,專心過你的生活、陪家人、做你喜歡的事。<strong>讓時間幫你工作。</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 心理建設 ===== -->
+  <section>
+    <div class="chapter-num">06</div>
+    <h2>市場大跌時,該怎麼辦?</h2>
+    <p class="chapter-sub">這個答案會決定你最後賺多少錢</p>
+
+    <p>20 年的投資路上,你<strong>一定</strong>會遇到 2-3 次 30% 以上的大跌(如 2008、2020、2022)。這時你的帳戶會看起來很慘,新聞會說「股市要崩盤了」,你身邊的人會勸你停損。</p>
+
+    <div class="highlight-box">
+      <div class="highlight-box-title">真正的解答只有兩個字:加碼</div>
+      <p style="margin: 0;">
+        市場大跌 = 同一檔 ETF <strong>打折出售</strong>。原本一張 13 萬的 0050,變成 9 萬就能買到。<strong>這是好事,不是壞事。</strong><br><br>
+        你需要做的不是停扣,而是<strong>「繼續扣」+「有閒錢就加碼」</strong>。歷史上,熊市時加碼的人,牛市回來後賺最多。
+      </p>
+    </div>
+
+    <h3>機械式加碼規則(不需要判斷)</h3>
+    <p>準備一筆「緊急加碼金」(例如 10-20 萬,放在貨幣型基金),設定機械規則:</p>
+    <ul style="margin: 16px 0 16px 24px; line-height: 2;">
+      <li>市場跌 <strong>10%</strong> → 動用加碼金的 1/3</li>
+      <li>市場跌 <strong>20%</strong> → 動用加碼金的 1/2</li>
+      <li>市場跌 <strong>30%+</strong> → 全部投入</li>
+    </ul>
+
+    <div class="warning-box">
+      <div class="warning-box-title">最致命的三個錯誤</div>
+      <p style="margin: 0;">
+        ❌ 大跌時恐慌停扣 — 等於把帳面虧損變永久虧損<br>
+        ❌ 大漲時 All-in — 通常買在山頂<br>
+        ❌ 看了新聞換標的 — 主題輪動永遠抓不到
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 常見問題 ===== -->
+  <section>
+    <div class="chapter-num">07</div>
+    <h2>朋友最常問的 6 個問題</h2>
+    <p class="chapter-sub">先把疑慮解決,執行才會堅定</p>
+
+    <div class="qa-item">
+      <div class="qa-q">每月 1 萬太多,我只能投 3,000 元行嗎?</div>
+      <div class="qa-a">完全可以。3,000 元 × 20 年 × 8% 也能累積到約 178 萬。<strong>金額不是重點,「持續」才是重點。</strong>從你能負擔的金額開始,加薪後再增加。</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">如果中間需要錢怎麼辦?</div>
+      <div class="qa-a">所以一定要先存「緊急預備金」(6 個月生活費)再開始投資。投資的錢應該是 5 年內用不到的閒錢。中間真的急用,可以贖回部分,不會卡死。</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">為什麼不買其他高股息 ETF(像 0056、00878)?</div>
+      <div class="qa-a">高股息 ETF 看起來很誘人,但長期總報酬通常輸給 0050。<strong>因為配出去的股息不會自動再投入,複利效果打折。</strong>真要存退休金,優先選 0050,等退休前 5-10 年再考慮加配高股息。</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">現在 ETF 已經漲很多了,還能進場嗎?</div>
+      <div class="qa-a">這是 20 年前、10 年前、5 年前都被問的問題,答案永遠一樣:<strong>對長期投資者,「現在」永遠是最好的時機。</strong>因為你不知道未來會漲到哪裡,定期定額的設計就是為了「不需要擇時」。</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">需要找投資顧問或理專嗎?</div>
+      <div class="qa-a">不需要。這個策略本身就是設計成「不需要顧問」。理專推薦的基金通常費用高、報酬未必比 ETF 好,而且他們的佣金來自你的虧損機會。<strong>自己 DIY 反而最安全。</strong></div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">萬一台積電倒了/美國衰退了怎麼辦?</div>
+      <div class="qa-a">ETF 的設計就是<strong>自動汰弱留強</strong>。某家公司不行了,會被踢出指數,新的強者會加入。這不是押注單一公司,是押注「整個經濟體系會持續成長」。除非你認為人類經濟會永遠衰退,否則這個策略長期一定能賺錢。</div>
+    </div>
+  </section>
+
+  <!-- ===== 最終 CTA ===== -->
+  <div class="cta-section">
+    <div class="cta-tag">YOUR ACTION CHECKLIST</div>
+    <div class="cta-title">本週就開始,<br>未來 20 年的你會謝謝今天</div>
+    <p class="cta-desc">
+      理財最常見的失敗不是選錯標的,是「一直在猶豫,從來沒開始」。<br>
+      把這份清單存在手機,本週內完成這 5 件事:
+    </p>
+    <div class="cta-checklist">
+      <div class="cta-checklist-item">確認自己的緊急預備金(6 個月生活費)</div>
+      <div class="cta-checklist-item">下載一家券商 App,線上開戶</div>
+      <div class="cta-checklist-item">決定每月可投資金額(從 3,000 元也行)</div>
+      <div class="cta-checklist-item">設定 0050 + 00646 的自動扣款</div>
+      <div class="cta-checklist-item">把 App 關掉,過接下來 20 年的人生</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="disclaimer">
+      <strong>免責聲明:</strong>本頁內容僅為個人理財觀念分享,非投資建議。任何投資都有風險,過去績效不代表未來表現。請依個人財務狀況評估,必要時諮詢合格理財顧問。所有具體標的、報酬率僅為說明用,實際結果因市場條件而異。
+    </div>
+    <div>分享給更多需要的朋友 · 一起為未來做準備</div>
+    <div style="margin-top: 8px;">© 2026 · 給朋友的退休金懶人包</div>
+  </footer>
+
+</div>
+</body>
+</html>
