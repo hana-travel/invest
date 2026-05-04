@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>定期定額試算 · 0050 + 00646</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: #f5f1e8;
+    color: #1a1a1a;
+    line-height: 1.6;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+    border-bottom: 3px solid #1a1a1a;
+    padding-bottom: 12px;
+  }
+
+  .subtitle {
+    color: #6b6358;
+    margin-bottom: 30px;
+    font-size: 14px;
+  }
+
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 30px 0 16px 0;
+    padding: 12px 16px;
+    background: #1a1a1a;
+    color: #f5f1e8;
+    border-left: 8px solid #c8401d;
+  }
+
+  /* 區塊 1: 月投入比例 - 大框紅標 */
+  .ratio-box {
+    background: #fff;
+    border: 3px solid #c8401d;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 4px 4px 0 #c8401d;
+  }
+
+  .ratio-box-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #c8401d;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px dashed #c8401d;
+  }
+
+  .ratio-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .ratio-label {
+    font-size: 16px;
+    font-weight: 700;
+    min-width: 130px;
+  }
+
+  .ratio-label.tw { color: #c8401d; }
+  .ratio-label.us { color: #2c5282; }
+
+  .ratio-slider {
+    flex: 1;
+    min-width: 200px;
+    height: 12px;
+    background: #e8e0cc;
+    border: 2px solid #1a1a1a;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .ratio-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 28px;
+    height: 28px;
+    background: #c8401d;
+    border: 3px solid #fff;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+
+  .ratio-slider::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+    background: #c8401d;
+    border: 3px solid #fff;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .ratio-value {
+    font-size: 24px;
+    font-weight: 900;
+    min-width: 80px;
+    text-align: right;
+    color: #1a1a1a;
+  }
+
+  .ratio-amount {
+    font-size: 14px;
+    color: #6b6358;
+    min-width: 100px;
+    text-align: right;
+  }
+
+  .quick-buttons {
+    margin-top: 16px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .quick-buttons button {
+    padding: 8px 16px;
+    border: 2px solid #1a1a1a;
+    background: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .quick-buttons button:hover {
+    background: #1a1a1a;
+    color: #f5f1e8;
+  }
+
+  /* 區塊 2: 兩檔 ETF 累積總額 - 並排卡片 */
+  .etf-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .etf-card {
+    background: #fff;
+    border: 3px solid #1a1a1a;
+    border-radius: 8px;
+    padding: 24px;
+  }
+
+  .etf-card.tw { border-top: 12px solid #c8401d; }
+  .etf-card.us { border-top: 12px solid #2c5282; }
+
+  .etf-card-name {
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 4px;
+  }
+
+  .etf-card.tw .etf-card-name { color: #c8401d; }
+  .etf-card.us .etf-card-name { color: #2c5282; }
+
+  .etf-card-ticker {
+    font-size: 12px;
+    color: #6b6358;
+    margin-bottom: 16px;
+    font-family: monospace;
+  }
+
+  .etf-stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #e8e0cc;
+  }
+
+  .etf-stat-row:last-child { border-bottom: none; }
+
+  .etf-stat-label {
+    font-size: 13px;
+    color: #6b6358;
+  }
+
+  .etf-stat-value {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .etf-stat-value.big {
+    font-size: 24px;
+    color: #b8893a;
+  }
+
+  .etf-stat-value.profit {
+    color: #3d6b3a;
+  }
+
+  /* 控制項 */
+  .controls {
+    background: #fff;
+    border: 2px solid #1a1a1a;
+    padding: 20px;
+    margin-bottom: 24px;
+    border-radius: 8px;
+  }
+
+  .controls-title {
+    font-weight: 700;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #6b6358;
+  }
+
+  .controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  .controls-grid label {
+    display: block;
+    font-size: 12px;
+    color: #6b6358;
+    margin-bottom: 4px;
+  }
+
+  .controls-grid input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #1a1a1a;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 4px;
+  }
+
+  /* 表格 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border: 2px solid #1a1a1a;
+    margin-bottom: 24px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  thead { background: #1a1a1a; color: #fff; }
+
+  th, td {
+    padding: 12px 10px;
+    text-align: right;
+    font-size: 13px;
+  }
+
+  th:first-child, td:first-child { text-align: left; }
+
+  tr:not(:last-child) td { border-bottom: 1px solid #e8e0cc; }
+
+  tr.highlight { background: rgba(200, 64, 29, 0.1); }
+  tr.highlight td:first-child { color: #c8401d; font-weight: 700; }
+
+  td.tw-col { color: #c8401d; }
+  td.us-col { color: #2c5282; }
+  td.total-col { font-weight: 900; }
+
+  @media (max-width: 600px) {
+    .etf-cards { grid-template-columns: 1fr; }
+    .ratio-row { flex-direction: column; align-items: stretch; }
+    .ratio-value, .ratio-amount { text-align: left; }
+    th, td { padding: 8px 4px; font-size: 11px; }
+    h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>定期定額試算 · 0050 + 00646</h1>
+  <p class="subtitle">調整下方比例與參數,即時看試算結果</p>
+
+  <!-- ===== 區塊 1: 月投入比例 ===== -->
+  <div class="ratio-box">
+    <div class="ratio-box-title">📊 區塊 1 · 月投入比例分配</div>
+
+    <div class="ratio-row">
+      <div class="ratio-label tw">台灣 50</div>
+      <input type="range" class="ratio-slider" id="twPct" min="0" max="100" value="50" step="5">
+      <div class="ratio-value"><span id="twPctVal">50</span>%</div>
+      <div class="ratio-amount"><span id="twAmount">5,000</span> 元/月</div>
+    </div>
+
+    <div class="ratio-row">
+      <div class="ratio-label us">S&P 500</div>
+      <input type="range" class="ratio-slider" id="usPctDisplay" min="0" max="100" value="50" disabled>
+      <div class="ratio-value"><span id="usPctVal">50</span>%</div>
+      <div class="ratio-amount"><span id="usAmount">5,000</span> 元/月</div>
+    </div>
+
+    <div class="quick-buttons">
+      <button onclick="setRatio(50)">50/50 平衡</button>
+      <button onclick="setRatio(70)">70/30 偏台股</button>
+      <button onclick="setRatio(30)">30/70 偏美股</button>
+      <button onclick="setRatio(60)">60/40</button>
+      <button onclick="setRatio(40)">40/60</button>
+    </div>
+  </div>
+
+  <!-- 控制項 -->
+  <div class="controls">
+    <div class="controls-title">參數設定</div>
+    <div class="controls-grid">
+      <div>
+        <label>每月總投入(元)</label>
+        <input type="number" id="monthly" value="10000" step="1000">
+      </div>
+      <div>
+        <label>投入年數</label>
+        <input type="number" id="years" value="20" min="1" max="40">
+      </div>
+      <div>
+        <label>當前年齡</label>
+        <input type="number" id="age" value="25" min="20" max="80">
+      </div>
+      <div>
+        <label>年化報酬率(%)</label>
+        <input type="number" id="rate" value="8" step="0.5" min="1" max="20">
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 區塊 2: 兩檔 ETF 各自累積總額 ===== -->
+  <div class="section-title">💰 區塊 2 · 兩檔 ETF 各自累積總額</div>
+
+  <div class="etf-cards">
+
+    <!-- 0050 -->
+    <div class="etf-card tw">
+      <div class="etf-card-name">台灣 50</div>
+      <div class="etf-card-ticker">0050.TW · 占比 <span id="twCardPct">50</span>%</div>
+
+      <div class="etf-stat-row">
+        <span class="etf-stat-label">每月投入</span>
+        <span class="etf-stat-value"><span id="twMonthly">5,000</span> 元</span>
+      </div>
+      <div class="etf-stat-row">
+        <span class="etf-stat-label">累積本金</span>
+        <span class="etf-stat-value"><span id="twPrincipal">120</span> 萬</span>
+      </div>
+      <div class="etf-stat-row">
+        <span class="etf-stat-label">期末總值</span>
+        <span class="etf-stat-value big"><span id="twFV">295</span> 萬</span>
+      </div>
+      <div class="etf-stat-row">
+        <span class="etf-stat-label">複利獲利</span>
+        <span class="etf-stat-value profit">+<span id="twProfit">175</span> 萬</span>
+      </div>
+    </div>
+
+    <!-- 00646 -->
+    <div class="etf-card us">
+      <div class="etf-card-name">S&P 500</div>
+      <div class="etf-card-ticker">00646.TW · 占比 <span id="usCardPct">50</span>%</div>
+
+      <div class="etf-stat-row">
+        <span class="etf-stat-label">每月投入</span>
+        <span class="etf-stat-value"><span id="usMonthly">5,000</span> 元</span>
+      </div>
+      <div class="etf-stat-row">
+        <span class="etf-stat-label">累積本金</span>
+        <span class="etf-stat-value"><span id="usPrincipal">120</span> 萬</span>
+      </div>
+      <div class="etf-stat-row">
+        <span class="etf-stat-label">期末總值</span>
+        <span class="etf-stat-value big"><span id="usFV">295</span> 萬</span>
+      </div>
+      <div class="etf-stat-row">
+        <span class="etf-stat-label">複利獲利</span>
+        <span class="etf-stat-value profit">+<span id="usProfit">175</span> 萬</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 多種報酬率推演 -->
+  <div class="section-title">📈 不同報酬率推演表</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>年化報酬</th>
+        <th>0050 部位</th>
+        <th>00646 部位</th>
+        <th>合計總值</th>
+        <th>本金倍數</th>
+      </tr>
+    </thead>
+    <tbody id="resultsBody"></tbody>
+  </table>
+
+  <p style="text-align: center; color: #6b6358; font-size: 12px; margin-top: 24px;">
+    ※ 試算採月複利公式 · 假設兩檔 ETF 採相同年化報酬率<br>
+    Hana · 2026
+  </p>
+
+</div>
+
+<script>
+  // 計算定期定額終值
+  function calc(monthly, annualRate, months) {
+    if (monthly === 0 || months === 0) return 0;
+    const r = annualRate / 12;
+    return monthly * (((1 + r) ** months - 1) / r);
+  }
+
+  function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+  function wan(n) { return (n / 10000).toFixed(0); }
+
+  // 快速設定比例
+  function setRatio(twPct) {
+    document.getElementById('twPct').value = twPct;
+    render();
+  }
+
+  // 比例同步
+  document.getElementById('twPct').addEventListener('input', function() {
+    document.getElementById('usPctDisplay').value = 100 - this.value;
+    render();
+  });
+
+  function render() {
+    const monthly = parseFloat(document.getElementById('monthly').value) || 10000;
+    const years = parseInt(document.getElementById('years').value) || 20;
+    const age = parseInt(document.getElementById('age').value) || 25;
+    const rate = (parseFloat(document.getElementById('rate').value) || 8) / 100;
+    const twPct = parseInt(document.getElementById('twPct').value);
+    const usPct = 100 - twPct;
+
+    const months = years * 12;
+    const twMonthly = monthly * twPct / 100;
+    const usMonthly = monthly * usPct / 100;
+
+    // 區塊 1 顯示
+    document.getElementById('twPctVal').textContent = twPct;
+    document.getElementById('usPctVal').textContent = usPct;
+    document.getElementById('twAmount').textContent = fmt(twMonthly);
+    document.getElementById('usAmount').textContent = fmt(usMonthly);
+    document.getElementById('usPctDisplay').value = usPct;
+
+    // 區塊 2 計算
+    const twPrincipal = twMonthly * months;
+    const usPrincipal = usMonthly * months;
+    const twFV = calc(twMonthly, rate, months);
+    const usFV = calc(usMonthly, rate, months);
+
+    document.getElementById('twCardPct').textContent = twPct;
+    document.getElementById('usCardPct').textContent = usPct;
+    document.getElementById('twMonthly').textContent = fmt(twMonthly);
+    document.getElementById('usMonthly').textContent = fmt(usMonthly);
+    document.getElementById('twPrincipal').textContent = wan(twPrincipal);
+    document.getElementById('usPrincipal').textContent = wan(usPrincipal);
+    document.getElementById('twFV').textContent = wan(twFV);
+    document.getElementById('usFV').textContent = wan(usFV);
+    document.getElementById('twProfit').textContent = wan(twFV - twPrincipal);
+    document.getElementById('usProfit').textContent = wan(usFV - usPrincipal);
+
+    // 推演表格
+    const scenarios = [
+      { rate: 0.04, label: "保守" },
+      { rate: 0.06, label: "略保守" },
+      { rate: 0.07, label: "偏低" },
+      { rate: 0.08, label: "0050 歷史均", highlight: true },
+      { rate: 0.09, label: "混合預期" },
+      { rate: 0.10, label: "S&P500 歷史均", highlight: true },
+      { rate: 0.12, label: "近10年牛市" },
+    ];
+
+    const tbody = document.getElementById('resultsBody');
+    tbody.innerHTML = '';
+    const totalP = monthly * months;
+
+    scenarios.forEach(s => {
+      const tw = calc(twMonthly, s.rate, months);
+      const us = calc(usMonthly, s.rate, months);
+      const total = tw + us;
+      const mult = total / totalP;
+      const tr = document.createElement('tr');
+      if (s.highlight) tr.classList.add('highlight');
+      tr.innerHTML = `
+        <td>${(s.rate*100).toFixed(0)}% <small style="color:#999">${s.label}</small></td>
+        <td class="tw-col">${fmt(tw)}</td>
+        <td class="us-col">${fmt(us)}</td>
+        <td class="total-col">${fmt(total)}</td>
+        <td>${mult.toFixed(2)}x</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // 監聽
+  ['monthly', 'years', 'age', 'rate'].forEach(id => {
+    document.getElementById(id).addEventListener('input', render);
+  });
+
+  render();
+</script>
+</body>
+</html>
