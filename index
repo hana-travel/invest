@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HANA Journey | 投資 × 旅遊</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+    background-color: #f5f7f9;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    padding: 70px 20px;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    color: white;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 42px;
+    letter-spacing: 2px;
+}
+
+header p {
+    margin-top: 15px;
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+.container {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.card h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+.card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #2c5364;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 14px;
+    color: #777;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <h1>HANA Journey</h1>
+    <p>投資有方向・旅行有自由・人生有選擇</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>退休規劃懶人包（給朋友）</h2>
+        <p>用最白話的方式，整理退休金準備的核心觀念與實務做法，
+        適合已進入職場、希望開始規劃未來財務安全的朋友。</p>
+        <a href="retirement-guide-for-friends.html">閱讀文章 →</a>
+    </div>
+
+    <div class="card">
+        <h2>退休規劃入門版（給年輕人）</h2>
+        <p>給剛出社會或還在起步階段的你，
+        建立正確理財觀念，從小額投資開始累積長期複利。</p>
+        <a href="retirement-guide-young-adults.html">閱讀文章 →</a>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 HANA Journey ｜ 投資 × 旅遊 × 長期人生規劃
+</footer>
+
+</body>
+</html>
